@@ -1,0 +1,56 @@
+@import "src/variables.module";
+
+.addLinkWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: $defaultTextColor;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.returnButton {
+    display: flex;
+    justify-content: center;
+    letter-spacing: 0.05rem;
+    font-size: 1.2rem;
+    height: 24px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.arrow {
+    margin-right: 8px;
+    height: 24px;
+    width: 24px;
+}
+
+.label {
+    margin: 1rem 0;
+    font-size: 2rem;
+}
+
+.addButtonWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    background: $defaultTextColor;
+    color: white;
+    width: 200px;
+    height: 60px;
+
+    &:hover {
+        background: $primaryColor;
+        color: $secondaryColor;
+        cursor: pointer;
+    }
+}
