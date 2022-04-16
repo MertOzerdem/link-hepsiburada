@@ -1,0 +1,7 @@
+@import "src/variables.module";
+
+.divider {
+    border: 3px solid $backgroundFocus;
+    border-radius: 1rem;
+    margin: 10px 0;
+}

@@ -1,0 +1,104 @@
+@import "src/variables.module";
+
+.modalWrapper,
+.overlay {
+    background-color: #a4a4a49c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 35%;
+    z-index: 10;
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    z-index: 9;
+}
+
+.modalWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $backgroundColor;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    min-width: 400px;
+    min-height: 200px;
+}
+
+.labelWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+    margin: 1px;
+    font-size: 1.5rem;
+    background-color: $defaultTextColor;
+    color: $backgroundColor;
+    width: -webkit-fill-available;
+}
+
+.label {
+    font-weight: 600;
+}
+
+.close {
+    font-weight: bolder;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem;
+    width: 80%;
+    height: 90%;
+}
+
+.textWrapper {
+    display: flex;
+    flex-direction: column; 
+}
+
+.text {
+    color: $primaryColor;
+}
+
+.textBold {
+    font-size: 2rem;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    background: $defaultTextColor;
+    color: white;
+    width: 150px;
+    height: 60px;
+
+    &:hover {
+        background: $primaryColor;
+        color: $secondaryColor;
+        cursor: pointer;
+    }
+}

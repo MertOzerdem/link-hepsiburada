@@ -1,0 +1,30 @@
+@import "src/variables.module";
+
+$successColorBorder: #05e140;
+$successTextColor: #3fa85d;
+
+.AlertWrapper {
+    min-width: 300px;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 1rem;
+    background-color: $successColor;
+    border: 2px solid $successColorBorder;
+    border-radius: 5px;
+    color: $successTextColor;
+    font-size: 2rem;
+}
+
+.label {
+    display: inline;
+}
+
+.item {
+    font-weight: bold;
+}
+
+.action {
+    font-weight: 500;
+}

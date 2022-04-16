@@ -1,8 +1,34 @@
 $primaryColor: #a4a4a4;
 $secondaryColor: #404040;
 $defaultTextColor: #040303;
-$successColor: #38ee69;
+$successColor: #d7ffe2;
 $warningColor: #ae1919;
 
 $backgroundColor: #f6f6f6;
 $backgroundFocus: #c8c8c8;
+$buttonColor: #EFEFEF;
+
+$buttonSize: 90px;
+
+@mixin Label($theme: $buttonColor) {
+    font-size: 4rem;
+    height: $buttonSize;
+    width: $buttonSize;
+    min-height: $buttonSize;
+    min-width: $buttonSize;
+    padding: 0;
+    margin: 5px;
+    border-radius: 7px;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    background-color: $theme;
+}
+
+:export {
+    primaryColor: $primaryColor;
+    secondaryColor: $secondaryColor;
+    defaultTextColor: $defaultTextColor;
+    successColor: $successColor;
+    warningColor: $warningColor;
+}

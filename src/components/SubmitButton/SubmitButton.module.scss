@@ -15,14 +15,7 @@
 }
 
 .button {
-    font-size: 4rem;
-    height: 90px;
-    width: 90px;
-    padding: 0;
-    margin: 5px;
-    border-radius: 7px;
-    border-width: 1px;
-    text-align: center;
+    @include Label;
     outline: 0;
 
     &:hover {
