@@ -10,7 +10,7 @@ function App() {
   return (
     <div className={styles.App}>
       <Navbar />
-      <ListView />
+      <ListView itemCount={5}/>
       {/* <AddLinkView returnAddress={'List'} /> */}
       {/* <Modal /> */}
       {/* <Alert item={'label'} action={'is removed!'} /> */}
