@@ -11,8 +11,6 @@ import Modal from "../../components/Modal/Modal";
 import Alert from "../../components/Alert/Alert";
 import { CONSTANTS } from "../../constants";
 
-import { dummy } from "../../components/data/dummy";
-
 const sortLabels = [
 	{
 		label: "Most Voted (Z$0A)",
@@ -34,8 +32,29 @@ const sortLabels = [
 	},
 ];
 
+const sortTypes = {
+	mostVotes: "most votes",
+	leastVotes: "least votes",
+	createdAt: "createdAt",
+};
+
+const getSortedList = (data, sortType) => {
+	let sortedList = [];
+	if (sortType === sortTypes.mostVotes) {
+		sortedList = _.orderBy(data, ["votes", "updatedAt"], ["desc", "desc"]);
+	} else if (sortType === sortTypes.leastVotes) {
+		sortedList = _.orderBy(data, ["votes", "updatedAt"], ["asc", "desc"]);
+	} else if (sortType === sortTypes.createdAt) {
+		sortedList = _.orderBy(data, ["createdAt", "updatedAt"], ["desc", "desc"]);
+	}
+
+	return sortedList;
+};
+
 const ListView = ({ itemCount, changeView }) => {
-	const [data, setData] = useState(JSON.parse(localStorage.getItem(CONSTANTS.storageLink)));
+	const [data, setData] = useState(
+		getSortedList(JSON.parse(localStorage.getItem(CONSTANTS.storageLink)), sortTypes.createdAt) || []
+	);
 	const [pageCount, setpageCount] = useState(0);
 	const [currentPage, setCurrentPage] = useState(0);
 	const [deleteTarget, setDeleteTarget] = useState(0);
@@ -45,7 +64,7 @@ const ListView = ({ itemCount, changeView }) => {
 	useEffect(() => {
 		setpageCount(Math.ceil(data.length / itemCount));
 		localStorage.setItem(CONSTANTS.storageLink, JSON.stringify(data));
-	}, [data]);
+	}, [data, itemCount]);
 
 	const deleteLink = (id) => {
 		let link = _.find(data, (item) => item.id === deleteTarget);
@@ -56,7 +75,15 @@ const ListView = ({ itemCount, changeView }) => {
 			setAlertLabel(null);
 		}, 1000);
 
-		const newData = data.filter((item) => item.id !== id);
+		const newData = getSortedList(
+			data.filter((item) => item.id !== id),
+			sortTypes.mostVotes
+		);
+
+		if (data.length !== 1 && data.length % itemCount === 1) {
+			setCurrentPage((currentPage) => currentPage - 1);
+		}
+
 		setData(newData);
 	};
 
@@ -78,6 +105,25 @@ const ListView = ({ itemCount, changeView }) => {
 		);
 	};
 
+	const onClickVote = (id, updateCount) => {
+		let link = _.find(data, (item) => item.id === id);
+		let links = data.filter((item) => item.id !== id);
+		let newLink = { ...link };
+		newLink.votes += updateCount;
+		newLink.updatedAt = Date.now();
+		links.push(newLink);
+
+		setData(getSortedList(links, sortTypes.mostVotes));
+	};
+
+	const onClickSort = (index) => {
+		if (index === 0) {
+			setData(getSortedList(data, sortTypes.mostVotes));
+		} else if (index === 1) {
+			setData(getSortedList(data, sortTypes.leastVotes));
+		}
+	};
+
 	const getPaginatedList = (itemCount) => {
 		const currentList = data.slice(currentPage * itemCount, (currentPage + 1) * itemCount);
 		return currentList.map((item) => {
@@ -85,10 +131,11 @@ const ListView = ({ itemCount, changeView }) => {
 				<Link
 					key={item.id}
 					id={item.id}
-					voteCount={item.upvotes - item.downvotes}
+					voteCount={item.votes}
 					link={item.link}
 					label={item.label}
-					onClick={setDeleteTarget}
+					onClickDelete={setDeleteTarget}
+					onClickVote={onClickVote}
 				/>
 			);
 		});
@@ -100,7 +147,7 @@ const ListView = ({ itemCount, changeView }) => {
 			{deleteTarget !== 0 && getDeleteModal()}
 			<SubmitButton buttonAction={changeView} />
 			<div className={styles.divider}></div>
-			<Dropdown list={list} />
+			<Dropdown list={list} onClickSort={onClickSort} />
 			{getPaginatedList(itemCount)}
 			{pageCount - 1 > 0 && (
 				<div className={styles.paginationWrapper}>

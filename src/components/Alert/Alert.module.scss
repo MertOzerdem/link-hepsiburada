@@ -6,6 +6,7 @@ $successTextColor: #3fa85d;
 .AlertWrapper {
     min-width: 300px;
     position: fixed;
+    z-index: 100;
     top: 100px;
     left: 50%;
     transform: translate(-50%, 0);

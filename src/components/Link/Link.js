@@ -3,7 +3,14 @@ import styles from "./Link.module.scss";
 import globalStyles from "../../variables.module.scss";
 import Arrow from "../Arrow/Arrow";
 
-const Link = ({ id, voteCount = 0, label = "Default Link", link = "https://defaultLink.com", onClick }) => {
+const Link = ({
+	id,
+	voteCount = 0,
+	label = "Default Link",
+	link = "https://defaultLink.com",
+	onClickDelete,
+	onClickVote,
+}) => {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
@@ -26,11 +33,11 @@ const Link = ({ id, voteCount = 0, label = "Default Link", link = "https://defau
 					<div className={styles.link}>({link})</div>
 				</div>
 				<div className={styles.voteWrapper}>
-					<div className={styles.vote}>
+					<div className={styles.vote} onClick={() => onClickVote(id, 1)}>
 						<Arrow className={styles.upvote} arrowColor={globalStyles.primaryColor} />
 						Up Vote
 					</div>
-					<div className={styles.vote}>
+					<div className={styles.vote} onClick={() => onClickVote(id, -1)}>
 						<Arrow className={styles.downvote} arrowColor={globalStyles.primaryColor} />
 						Down Vote
 					</div>
@@ -39,7 +46,7 @@ const Link = ({ id, voteCount = 0, label = "Default Link", link = "https://defau
 			{isHovered && (
 				<svg
 					className={styles.delete}
-					onClick={() => onClick(id)}
+					onClick={() => onClickDelete(id)}
 					width="24"
 					height="24"
 					viewBox="0 0 24 24"

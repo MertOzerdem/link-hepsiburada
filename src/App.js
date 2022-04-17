@@ -4,11 +4,9 @@ import "./components/Navbar/Navbar";
 import Navbar from "./components/Navbar/Navbar";
 import ListView from "./views/ListView/ListView";
 import AddLinkView from "./views/AddLinkView/AddLinkView";
-import Modal from "./components/Modal/Modal";
-import Alert from "./components/Alert/Alert";
 
 function App() {
-	const [isListView, setIsListView] = useState(false);
+	const [isListView, setIsListView] = useState(true);
 
 	const changeView = () => {
 		setIsListView((prev) => !prev);

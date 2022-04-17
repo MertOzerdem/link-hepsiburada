@@ -3,9 +3,9 @@ import styles from "./Dropdown.module.scss";
 
 // const dropdowns = ['Newest', 'Oldest', 'Most popular', 'Least popular'];
 
-const Dropdown = ({ list = [] }) => {
+const Dropdown = ({ list = [], onClickSort }) => {
 	const [isOpen, setIsOpen] = useState(false);
-	// list = dropdowns;
+
 	return (
 		<div className={styles.dropdownWrapper} onClick={() => setIsOpen((prev) => !prev)}>
 			<div className={styles.label}>Order by</div>
@@ -18,7 +18,7 @@ const Dropdown = ({ list = [] }) => {
 				<div className={styles.list}>
 					{list.map((item, index) => {
 						return (
-							<div key={index} className={styles.dropdownItem} onClick={() => console.log(index)}>
+							<div key={index} className={styles.dropdownItem} onClick={() => onClickSort(index)}>
 								{item}
 							</div>
 						);

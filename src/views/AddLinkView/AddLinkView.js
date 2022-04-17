@@ -1,4 +1,5 @@
 import { useState } from "react";
+import _ from "lodash";
 import styles from "./AddLinkView.module.scss";
 import Card from "../../components/Card/Card";
 import InputBox from "../../components/InputBox/InputBox";
@@ -12,19 +13,20 @@ const AddLinkView = ({ returnAddress, changeView }) => {
 	const [alertText, setAlertText] = useState(null);
 
 	const addLink = () => {
-		if (linkName === "" || linkUrl === "") return;
+		if (linkName === "" || linkUrl === "" || !!alertText) return;
 
 		let links = JSON.parse(localStorage.getItem(CONSTANTS.storageLink)) || [];
 		let date = Date.now();
+		let maxIdObject = _.maxBy(links, "id");
 		links.push({
-			id: links[links.length - 1] ? links[links.length - 1].id + 1 : 1,
+			id: maxIdObject ? maxIdObject.id + 1 : 1,
 			label: linkName,
 			link: linkUrl,
-			upvotes: 0,
-			downvotes: 0,
+			votes: 0,
 			createdAt: date,
 			updatedAt: date,
 		});
+		links = _.orderBy(links, ["createdAt"], ["desc"]);
 		localStorage.setItem(CONSTANTS.storageLink, JSON.stringify(links));
 
 		setAlertText(linkName);
