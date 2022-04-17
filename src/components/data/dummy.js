@@ -3,7 +3,7 @@ export const dummy = [
         "id": 1,
         "link": "https://www.google.com",
         "label": "Google",
-        "upvotes": 150,
+        "upvotes": 15,
         "downvotes": 14,
         "createdAt": Date.now(),
         "updatedAt": Date.now()

@@ -24,8 +24,8 @@
     }
 }
 
-.backArrow {
-
+.arrowHide {
+    visibility: hidden;
 }
 
 .pageNumber {
@@ -39,4 +39,8 @@
 
 .selectedPage {
     border: 2px solid $backgroundFocus;
+}
+
+.arrowRight {
+    transform: scale(0.5) rotate(180deg);
 }

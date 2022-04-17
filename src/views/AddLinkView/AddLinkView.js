@@ -3,13 +3,13 @@ import Card from '../../components/Card/Card';
 import InputBox from '../../components/InputBox/InputBox';
 import Arrow from '../../components/Arrow/Arrow';
 
-const AddLinkView = ({ returnAddress }) => {
+const AddLinkView = ({ returnAddress, changeView }) => {
     return (
         <Card>
             <div className={styles.addLinkWrapper}>
-                <div className={styles.returnButton}>
+                <div className={styles.returnButton} onClick={changeView}>
                     <Arrow />
-                    <div>Return to {returnAddress}</div>
+                    <div>&nbsp;Return to {returnAddress}</div>
                 </div>
                 <h2 className={styles.label}>Add New Link</h2>
 

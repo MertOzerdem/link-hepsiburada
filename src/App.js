@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './App.module.scss';
 import './components/Navbar/Navbar'
 import Navbar from './components/Navbar/Navbar';
@@ -7,11 +8,20 @@ import Modal from './components/Modal/Modal';
 import Alert from './components/Alert/Alert';
 
 function App() {
+  const [isListView, setIsListView] = useState(true);
+
+  const changeView = () => {
+    setIsListView(prev => !prev);
+  }
+
   return (
     <div className={styles.App}>
       <Navbar />
-      <ListView itemCount={5}/>
-      {/* <AddLinkView returnAddress={'List'} /> */}
+      {isListView ?
+        <ListView itemCount={5} changeView={changeView} />
+        :
+        <AddLinkView returnAddress={'List'} changeView={changeView}/>
+      }
       {/* <Modal /> */}
       {/* <Alert item={'label'} action={'is removed!'} /> */}
     </div>
