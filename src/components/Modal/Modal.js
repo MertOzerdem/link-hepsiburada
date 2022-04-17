@@ -24,10 +24,10 @@ const Modal = ({
 						<div className={styles.label}>{label}</div>
 					</div>
 					<div className={styles.buttonWrapper}>
-						<div className={styles.button} onClick={onClickPositive}>
+						<div className={styles.button} onClick={onClickPositive} data-testid="positive">
 							{positive}
 						</div>
-						<div className={styles.button} onClick={onClickNegative}>
+						<div className={styles.button} onClick={onClickNegative} data-testid="negative">
 							{negative}
 						</div>
 					</div>

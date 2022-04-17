@@ -4,12 +4,12 @@ import globalStyles from "../../variables.module.scss";
 import Arrow from "../Arrow/Arrow";
 
 const Link = ({
-	id,
+	id = 0,
 	voteCount = 0,
 	label = "Default Link",
 	link = "https://defaultLink.com",
-	onClickDelete,
-	onClickVote,
+	onClickDelete = () => {},
+	onClickVote = () => {},
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 
@@ -33,11 +33,11 @@ const Link = ({
 					<div className={styles.link}>({link})</div>
 				</div>
 				<div className={styles.voteWrapper}>
-					<div className={styles.vote} onClick={() => onClickVote(id, 1)}>
+					<div className={styles.vote} onClick={() => onClickVote(id, 1)} data-testid="upvote">
 						<Arrow className={styles.upvote} arrowColor={globalStyles.primaryColor} />
 						Up Vote
 					</div>
-					<div className={styles.vote} onClick={() => onClickVote(id, -1)}>
+					<div className={styles.vote} onClick={() => onClickVote(id, -1)} data-testid="downvote">
 						<Arrow className={styles.downvote} arrowColor={globalStyles.primaryColor} />
 						Down Vote
 					</div>

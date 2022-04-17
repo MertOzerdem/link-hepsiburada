@@ -2,7 +2,7 @@ import styles from './Navbar.module.scss';
 
 const Navbar = () => {
     return (
-        <nav className={styles.navbar}>
+        <nav className={styles.navbar} data-testid="navbar">
             <header className={styles.header}>hepsiburada
                 <span className={styles.span}>.com</span>
             </header>
