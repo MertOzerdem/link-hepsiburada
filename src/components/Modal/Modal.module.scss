@@ -30,7 +30,7 @@
     min-height: 200px;
 }
 
-.labelWrapper {
+.headerWrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -42,7 +42,7 @@
     width: -webkit-fill-available;
 }
 
-.label {
+.header {
     font-weight: 600;
 }
 
