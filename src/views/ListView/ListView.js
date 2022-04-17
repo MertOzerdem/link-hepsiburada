@@ -80,7 +80,7 @@ const ListView = ({ itemCount, changeView }) => {
 			sortTypes.mostVotes
 		);
 
-		if (data.length !== 1 && data.length % itemCount === 1) {
+		if (data.length !== 1 && data.length % itemCount === 1 && data.currentPage === pageCount) {
 			setCurrentPage((currentPage) => currentPage - 1);
 		}
 
